@@ -51,6 +51,7 @@ inoremap <c-d> <Esc>ddi
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
 Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
