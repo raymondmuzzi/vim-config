@@ -1,14 +1,24 @@
 " show the line number
 set number
 
+" set colorscheme
+colorscheme hybrid
+
+" set background
+set background=dark
+
 " open the syntax on
 syntax on
 
-" press F2 to enter the paste pattern
+" press F2 to enter the paste pattern, press F2 again to quit paste pattern
 set pastetoggle=<F2>
 
 " high light search
-set hlsearch
+" set hlsearch
+
+" when in the insert mode, ', + w' will save the file's modification
+let mapleader=','
+inoremap <leader>w <Esc>:w<cr>
 
 " use jj to enter the normal pattern
 inoremap jj <Esc>`^
@@ -34,20 +44,18 @@ set noeb
 set cursorline
 set cursorcolumn
 
-" 对json文件进行格式化，快捷键配置为F4
+" json format shortcut
 noremap <F4> :%!python -m json.tool<CR>
 
-" 使用空格键，在normal模式下，替换viw快捷键，从而实现选中单词的效果
+" use space to select word and enter the insert mode
 " map <space> viw
 
-" 在insert模式下，删除一行，并进入insert模式
-inoremap <c-d> <Esc>ddi
+" delete one line at insert mode and enter insert mode
+" inoremap <c-d> <Esc>ddi
 
 
-
-
-" vim-plug插件配置
-" 执行 :PlugInstall 命令实现安装插件的操作
+" vim-plug config
+" execute install :PlugInstall 
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
@@ -55,6 +63,32 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0ng/vim-hybrid'
 Plug 'preservim/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'}
+Plug 'junegunn/fzf.vim'
+Plug 'brooth/far.vim'
+Plug 'tpope/vim-commentary'
+
+" Plug 'artur-shaik/vim-javacomplete2'
+
 call plug#end()
 
+
+" find the location of the file
+nnoremap <leader>v :NERDTreeFind<cr>
+" Change the nerd tree
+nnoremap <leader>g :NERDTreeToggle<cr>
+
+
+" use ctrlp to find files quickly
 let g:ctrlp_map = '<c-p>'
+
+" keymap for easy-motion
+nmap ss <Plug>(easymotion-s2)
+
+" java complete
+" autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+
+

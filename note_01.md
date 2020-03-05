@@ -21,6 +21,10 @@ Here is the vim note for myself.
 
 **ctrl + v** : select by block
 
+**u** : in visual mode, change the selected characters to lower case
+
+**U** : in visual mode, change the selected characters to upper case
+
 ---
 
 **Modify Operation: operate words**
@@ -232,6 +236,174 @@ There is another method to append "" to the head and end of the line:
 **:colorscheme + {scheme}** : change color scheme to scheme
 
 All the color scheme file are located in the **~/.vim/colors**, if you want to add new color scheme to vim, you can download **scheme.vim** file from [github](https://www.github.com/) and move to ~/.vim/colors dir.
+
+---
+
+**Vim config**
+
+Vim's config file is **~/.vimrc**
+
+We can configure self-defined keymap :
+
+```shell
+let mapleader=','              " define a leader
+inoremap <leader>w <Esc>:w<cr> " inoremap: insert mode no recursive map
+															 " leader key + w will makes the function as Esc :w
+```
+
+**Vim key mapping**
+
+**imap** : insert mode map
+
+**nmap** :  normal mode map
+
+**vmap** :  visual mode map
+
+**Eg**: :imap \<c-d> \<Esc>ddi    : in insert mode, map the ctrl + d to Esc + dd + i
+
+**nnoremap/vnoremap/inoremap** : no represents no; re represents recursive
+
+In a word, we should use noremap all the time to avoid strange error
+
+---
+
+**Vim plugin** : there're many plugin management tools, like vim-plug, Vundle, Pathogen, Dein.Vim, volt etc.
+
+We use vim-plug as the management tool, you can download the vim-plug in GitHub: https://github.com/junegunn/vim-plug.
+
+In Unix/Linux, we can use the following shell:
+
+```shell
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+In windows, we can use the following batch:
+
+```batch
+md ~\vimfiles\autoload
+$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+(New-Object Net.WebClient).DownloadFile(
+  $uri,
+  $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+    "~\vimfiles\autoload\plug.vim"
+  )
+)
+```
+
+The vim-plug example file:
+
+```shell
+" vim-plug config
+" execute :PlugInstall (use command to install plugins)
+call plug#begin('~/.vim/plugged')
+
+" you can add plugins here, eg:
+Plug 'mhinz/vim-startify'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0ng/vim-hybrid'
+Plug 'preservim/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'}
+Plug 'junegunn/fzf.vim'
+Plug 'brooth/far.vim'
+Plug 'tpope/vim-commentary'
+
+call plug#end()
+```
+
+**:source ~/.vimrc** : flush the vimrc file without quiting the vim
+
+**:PlugInstall** : install the new added plug in vim-plug
+
+We can use [vimawesome](https://vimawesome.com) to find the plug we are interested. 
+
+---
+
+**NerdTree** : we can use nerd tree to find files quickly, and jump to the target file easily.
+
+**:NERDTree** : show the file tree of current directory 
+
+Because we've defined the "," as leader, so we can defined some keymap for nerd tree:
+
+```shell
+" find the location of the file
+nnoremap <leader>v :NERDTReeFind<cr>
+" Change the nerd tree
+nnoremap <leader>g :NERDTreeToggle<cr>
+```
+
+---
+
+**ctrlp** : find file quickly in vim, can find file from the current root directory
+
+Use following keymap config in ~/.vimrc, we can find file in vim via **ctrl + p** :
+
+```shell
+" use ctrlp to find files quickly
+let g:ctrlp_map = '<c-p>'
+```
+
+We can use ctrlp combined with NERDTree to find file and locate file very fast.
+
+---
+
+**easy-motion** : move the location we wanted in screen.
+
+We should define the shortcut keymap for easy-motion:
+
+```shell
+nmap ss <Plug>(easymotion-s2)
+```
+
+It's very functional ~
+
+---
+
+**Vim-surround** : delete, change, add paired content.
+
+**ds** : delete a surrounding
+
+**cs** : change a surrounding
+
+**ys** : you add a surrounding, eg: ysiw" means add " around the word
+
+---
+
+**fzf.vim : fuzzy file** to find content fuzzily
+
+**Files [PATH]** : find file fuzzily
+
+**Ag [PATTERN]** : find string fuzzily
+
+---
+
+**far.vim** : batch search and replace
+
+**:Far foo bar \*\*/*.py** : replace the foo to bar in the file of *.py
+
+**:Fardo** : execute the replacement
+
+---
+
+**vim-commentary** : comment plugin
+
+**gc** : comment or uncomment
+
+---
+
+
+
+
+
+
+
+
+
+
 
 
 
