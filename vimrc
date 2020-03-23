@@ -35,6 +35,9 @@ set nowritebackup
 " do not generate the swap file
 set noswapfile
 
+" ignore case when searching
+set ignorecase
+
 " set the tab size
 set ts=4
 set expandtab
